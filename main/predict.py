@@ -68,10 +68,10 @@ class Question:
             headers={"Authorization": Token}
         ).json()
 
-        for o in response["records"]:
-            questions.append(o["fields"])
-            if o["fields"]["Concept Id"][0] == uid:
-                questions.append(o["fields"])
+        # for o in response["records"]:
+        #     questions.append(o["fields"])
+        #     if o["fields"]["Concept Id"][0] == uid:
+        #         questions.append(o["fields"])
                 # repp = requests.get(
                 #     url="https://api.airtable.com/v0/appUQyoFtpfIjDofv/Activity%20Mastery?", #fields%5B%5D=Id&fields%5B%5D=Activty+Id&fields%5B%5D=User+Id&fields%5B%5D=Concept+Id+(from+Activty+Id)&fields%5B%5D=uid+(from+Activty+Id) 
                 #     headers={"Authorization": Token}
@@ -223,5 +223,7 @@ if __name__ == "__main__":
     }
 
     question_instance = Question()
-    next_question = question_instance.nextQuestion(input_data)
-    print(next_question)
+    # next_question = question_instance.nextQuestion(input_data)
+   
+    # print(next_question)
+    print(question_instance.getQuestionMastery("recXaNeH6EcVMR6WX"))
