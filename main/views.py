@@ -1,8 +1,22 @@
 from .models import MarkQuestion
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .serializers import MarkSerializer
+from .serializers import MarkSerializer, ConceptSerializer
 from .predict import Question
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+class ConceptViewSet(viewsets.ViewSet):
+    agent = Question()
+    def create(self, request):
+        serializer = ConceptSerializer(data=request.data)
+        if serializer.is_valid():
+            activities = self.agent.nextQuestion(request.data)
+            # Your logic here
+            return Response(activities, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class MarkView(viewsets.ViewSet):
